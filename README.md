@@ -9,7 +9,7 @@ $ docker-compose up
 To check does docker work or not:
 ```
 # this command will list all the containers
-$ docker-compose up 
+$ docker ps
 ```
 Then go to your browser and access:
 `localhost:3000` or `127.0.0.1:3000`
