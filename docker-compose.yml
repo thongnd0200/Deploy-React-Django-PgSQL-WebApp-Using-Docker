@@ -1,0 +1,36 @@
+version: "2.2"
+
+services:
+  django:
+    extends:
+      file: ./backend/docker-django.yml
+      service: django_sv
+    depends_on:
+      - db 
+    expose:
+      - 8000
+    
+  db:
+    extends:
+      file: ./backend/docker-db.yml
+      service: db_sv
+    expose:
+      - 5432
+
+  frontend:
+    extends:
+      file: ./frontend/docker-react.yml
+      service: frontend_sv
+    expose:
+      - 3000
+    depends_on:
+      - db 
+      - django
+
+volumes:
+  postgres_database:
+
+networks:
+  my_network:
+    name: react_django_local
+    driver: bridge

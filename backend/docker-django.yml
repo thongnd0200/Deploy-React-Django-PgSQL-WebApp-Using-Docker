@@ -1,0 +1,20 @@
+version: "2.2"
+
+services:
+  django_sv:
+    build: .
+    container_name: django_app
+    entrypoint: ["/bin/sh","-c"]
+    command:
+      - |
+          python manage.py migrate
+          python manage.py runserver 0.0.0.0:8000
+    # command: ["./wait-for-it.sh", "db_sv:5432", "--", "python", "app.py"]
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    networks:
+      - my_network
+    

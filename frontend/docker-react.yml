@@ -1,0 +1,15 @@
+version: "2.2"
+
+services:
+  frontend_sv:
+      build: .
+      container_name: react_app
+      stdin_open: true
+      command: npm start
+      volumes:
+        - .:/app
+      ports: 
+        - 3000:3000
+      restart: unless-stopped
+      networks:
+      - my_network

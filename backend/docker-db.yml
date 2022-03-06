@@ -1,0 +1,16 @@
+version: "2.2"
+
+services:
+  db_sv:
+    image: postgres:13
+    container_name: pgsql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_database:/var/lib/postgresql/database/
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    networks:
+      - my_network
